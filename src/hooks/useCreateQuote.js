@@ -1,36 +1,28 @@
 import { useState } from "react";
 import { createQuote, uploadQuoteImage } from "../network/quoteService";
+import { toast } from "react-toastify";
 
 export const useCreateQuote = () => {
   const [quoteTitle, setQuoteTitle] = useState("");
   const [selectedImageFile, setSelectedImageFile] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
+      setIsLoading(true);
       try {
         const response = await uploadQuoteImage(file);
         if (response && response[0].type === "IMAGE") {
           setSelectedImageFile(response[0].url);
         }
       } catch (error) {
-        alert("Failed to upload image.");
+        toast.error("Something went wrong! Was it really an image file?");
         console.error("Upload error:", error);
+      } finally {
+        setIsLoading(false);
       }
     }
-  };
-
-  const handleValidation = () => {
-    if (!selectedImageFile) {
-      alert("Please upload an image before creating the quote.");
-      return false;
-    }
-
-    if (!quoteTitle.trim()) {
-      alert("Please enter a quote.");
-      return false;
-    }
-    return true;
   };
 
   const resetForm = () => {
@@ -39,24 +31,24 @@ export const useCreateQuote = () => {
   };
 
   const handleSubmit = async () => {
-    if (!handleValidation()) {
-      return;
-    }
-
     try {
+      setIsLoading(true);
       const result = await createQuote(quoteTitle, selectedImageFile);
       if (result) {
         resetForm();
-        alert("Quote created successfully!");
+        toast.success("Quote created successfully");
       }
     } catch (error) {
       console.error("Error creating quote:", error);
-      alert("Failed to create quote.");
+      toast.error("Failed to create quote.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return {
     quoteTitle,
+    isLoading,
     setQuoteTitle,
     handleFileChange,
     handleSubmit,

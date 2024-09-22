@@ -1,9 +1,15 @@
+import { toast } from "react-toastify";
 import { getTokenFromStorage } from "../utils/functions";
 
 export const uploadQuoteImage = async (file) => {
   if (!file || !file.type.startsWith("image/")) {
-    alert("Only image files are allowed!");
-    return null;
+toast.error("Only image files allowed", {
+  position: "top-right",
+  autoClose: 5000,
+  closeOnClick: true,
+  transition: Bounce,
+});    
+return null;
   }
 
   const formData = new FormData();

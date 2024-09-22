@@ -4,7 +4,7 @@ import Label from "../atoms/Label";
 import FieldInput from "../molecules/FieldInput";
 
 const CreateQuoteForm = () => {
-  const { quoteTitle, setQuoteTitle, handleFileChange, handleSubmit } =
+  const { quoteTitle, isLoading, setQuoteTitle, handleFileChange, handleSubmit } =
     useCreateQuote();
 
   return (
@@ -18,6 +18,7 @@ const CreateQuoteForm = () => {
         <div className="flex flex-col mt-2">
           <Label htmlFor="quoteTitle" label="Quote Title" />
           <textarea
+            required
             id="quoteTitle"
             rows={1}
             cols={50}
@@ -38,8 +39,10 @@ const CreateQuoteForm = () => {
           />
         </div>
 
+        {isLoading && <div className="flex text-center font-italic">Relax! Processing the data...</div>}
+
         <div className="flex justify-center mt-4">
-          <Button type="submit" label="Submit" />
+          <Button type="submit" label="Submit" disabled={isLoading} />
         </div>
       </form>
     </div>

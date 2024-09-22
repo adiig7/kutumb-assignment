@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { loginUser } from "../network/loginService";
+import { toast } from "react-toastify";
 
 export const useAuth = () => {
   const [username, setUsername] = useState("");
@@ -18,13 +19,9 @@ export const useAuth = () => {
     return null;
   });
 
-  const validateForm = () => {
-    if (username.trim() === "") {
-      alert("Username cannot be empty!");
-      return false;
-    }
+  const validateOTP = () => {
     if (otp.length !== 4 || isNaN(otp)) {
-      alert("OTP must be a 4-digit number!");
+      toast.error("OTP must be a 4-digit number!");
       return false;
     }
     return true;
@@ -37,7 +34,7 @@ export const useAuth = () => {
 
   const submitLoginForm = async (event) => {
     event.preventDefault();
-    if (validateForm()) {
+    if (validateOTP()) {
       try {
         const response = await loginUser(username, otp);
         if (response.token) {
@@ -49,7 +46,7 @@ export const useAuth = () => {
         }
         resetForm();
       } catch (error) {
-        alert("Wrong OTP");
+        toast.error("Wrong OTP");
       }
     }
   };
