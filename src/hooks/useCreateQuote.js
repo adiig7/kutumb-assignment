@@ -19,6 +19,7 @@ export const useCreateQuote = () => {
             render: "Image upload successful",
             type: "success",
             isLoading: false,
+            autoClose: 5000,
           });
         }
       } catch (error) {
@@ -26,6 +27,7 @@ export const useCreateQuote = () => {
           render: "Something went wrong! Was it really an image file?",
           type: "error",
           isLoading: false,
+          autoClose: 5000,
         });
       }
     }
@@ -46,6 +48,7 @@ export const useCreateQuote = () => {
           render: "Quote created successfully",
           type: "success",
           isLoading: false,
+          autoClose: 5000,
         });
       }
     } catch (error) {
@@ -54,6 +57,7 @@ export const useCreateQuote = () => {
         render: "Something went wrong",
         type: "error",
         isLoading: false,
+        autoClose: 5000,
       });
     }
   };
