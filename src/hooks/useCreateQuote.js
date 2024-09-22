@@ -10,17 +10,23 @@ export const useCreateQuote = () => {
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      setIsLoading(true);
+      const loadingToast = toast.loading("Please wait...");
       try {
         const response = await uploadQuoteImage(file);
         if (response && response[0].type === "IMAGE") {
           setSelectedImageFile(response[0].url);
+          toast.update(loadingToast, {
+            render: "Image upload successful",
+            type: "success",
+            isLoading: false,
+          });
         }
       } catch (error) {
-        toast.error("Something went wrong! Was it really an image file?");
-        console.error("Upload error:", error);
-      } finally {
-        setIsLoading(false);
+        toast.update(loadingToast, {
+          render: "Something went wrong! Was it really an image file?",
+          type: "error",
+          isLoading: false,
+        });
       }
     }
   };
@@ -32,17 +38,23 @@ export const useCreateQuote = () => {
 
   const handleSubmit = async () => {
     try {
-      setIsLoading(true);
+      const loadingToast = toast.loading("Please wait...");
       const result = await createQuote(quoteTitle, selectedImageFile);
       if (result) {
         resetForm();
-        toast.success("Quote created successfully");
+        toast.update(loadingToast, {
+          render: "Quote created successfully",
+          type: "success",
+          isLoading: false,
+        });
       }
     } catch (error) {
       console.error("Error creating quote:", error);
-      toast.error("Failed to create quote.");
-    } finally {
-      setIsLoading(false);
+      toast.update(loadingToast, {
+        render: "Something went wrong",
+        type: "error",
+        isLoading: false,
+      });
     }
   };
 
