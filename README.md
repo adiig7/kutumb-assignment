@@ -1,8 +1,22 @@
-# React + Vite
+# Kutumb Assignment - Aditya Gupta
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  ## Deployed Link
+  Vercel deployed link: https://kutumb-assignment.vercel.app
+  
+  ## Tech stack
+  - React/Vite
+  - TailwindCSS
 
-Currently, two official plugins are available:
+  ## Steps to run
+  -   `npm i`
+  -   `npm run dev`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  ## Routes
+  - `/` - home page - lists all quotes with pagination
+  - `/login` - login page
+  - `/create` - lets user create a new quote
+
+## Important points taken care of while building this project
+  - Followed the atomic design pattern in React
+  - Kept components pure and used custom hooks for handling the state and side effects for the components
+  - Kept all the API calls segragated in the `network` folder
