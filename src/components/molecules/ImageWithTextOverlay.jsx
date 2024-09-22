@@ -9,7 +9,7 @@ const ImageWithTextOverlay = ({imageUrl, text}) => {
         className="object-cover w-full h-full"
       />
       <div className="absolute min-h-60 inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-center p-2">
-        <p>{quote.text}</p>
+        <p>{text}</p>
       </div>
     </div>
   );

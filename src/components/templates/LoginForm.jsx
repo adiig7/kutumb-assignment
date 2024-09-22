@@ -5,7 +5,7 @@ import FieldInput from "../molecules/FieldInput";
 const LoginForm = () => {
   const { username, setUsername, otp, setOTP, submitLoginForm } = useAuth();
   return (
-    <div className="flex justify-center p-2">
+    <div className="flex justify-center p-2 border-2 border-gray-600  mt-4 rounded-md">
       <div className="flex flex-col m-4 p-2">
         <form onSubmit={(e) => submitLoginForm(e)}>
           <div className="flex flex-col p-2">
