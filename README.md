@@ -21,7 +21,8 @@
   - Kept components pure and used custom hooks for handling the state and side effects for the components
   - Kept all the API calls segragated in the `network` folder
   - Added shimmer for quotes to present a better UX
-  - Used toastify library for better UX 
+  - Used toastify library for better UX
+  - Stored the token with the expiry of 60 minutes
 
 ## Screenshots
 ![image](https://github.com/user-attachments/assets/a0cf7a72-41c8-4761-a65a-8bf0d0651f59)
