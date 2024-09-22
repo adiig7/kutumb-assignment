@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 export const useCreateQuote = () => {
   const [quoteTitle, setQuoteTitle] = useState("");
   const [selectedImageFile, setSelectedImageFile] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
@@ -64,7 +63,6 @@ export const useCreateQuote = () => {
 
   return {
     quoteTitle,
-    isLoading,
     setQuoteTitle,
     handleFileChange,
     handleSubmit,
